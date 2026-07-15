@@ -12,8 +12,8 @@ st.caption("上传 CSV，用自然语言提出分析问题。模型生成受限 
 
 with st.sidebar:
     st.header("设置")
-    model = st.text_input("模型", value=os.getenv("OPENAI_MODEL", "gpt-4.1-mini"))
-    st.caption("请配置环境变量 OPENAI_API_KEY。")
+    model = st.text_input("本地 Ollama 模型", value="deepseek-r1:7b")
+    st.caption("免费、本地运行。请先启动 Ollama 和下载所选模型。")
 
 uploaded = st.file_uploader("上传 CSV 文件", type=["csv"])
 if not uploaded:
