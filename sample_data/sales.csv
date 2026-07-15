@@ -1,0 +1,13 @@
+month,region,product,units,unit_price
+2025-01,East,Notebook,120,8.5
+2025-01,West,Notebook,95,8.5
+2025-02,East,Notebook,135,8.5
+2025-02,West,Notebook,90,8.5
+2025-03,East,Notebook,110,8.5
+2025-03,West,Notebook,105,8.5
+2025-01,East,Pen,260,2.0
+2025-01,West,Pen,230,2.0
+2025-02,East,Pen,285,2.0
+2025-02,West,Pen,205,2.0
+2025-03,East,Pen,250,2.0
+2025-03,West,Pen,245,2.0
