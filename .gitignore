@@ -1,8 +1,10 @@
-.env
 .venv/
 __pycache__/
+*.py[cod]
 .pytest_cache/
-*.pyc
-*.png
-!assets/*.png
+.ruff_cache/
+.coverage
+htmlcov/
+.env
+.streamlit/secrets.toml
 work/
