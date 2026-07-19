@@ -1,0 +1,32 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.coverage.run]
+source = [
+  "agent",
+  "benchmark",
+  "benchmark_cases",
+  "data_loader",
+  "data_profile",
+  "executor",
+  "prompts",
+  "semantic_layer",
+  "sql_agent",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+fail_under = 70

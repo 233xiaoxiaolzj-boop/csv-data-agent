@@ -1,0 +1,77 @@
+{
+  "dataset": "ecommerce_sales",
+  "metrics": [
+    {
+      "name": "order_count",
+      "label": "订单数",
+      "aliases": ["订单量", "订单数量"],
+      "definition": "order_id 的去重计数",
+      "formula": "df['order_id'].nunique()",
+      "required_columns": ["order_id"]
+    },
+    {
+      "name": "units_sold",
+      "label": "销量",
+      "aliases": ["销售量", "售出件数"],
+      "definition": "units 的求和；销量是件数，不是金额",
+      "formula": "df['units'].sum()",
+      "required_columns": ["units"]
+    },
+    {
+      "name": "gross_sales_amount",
+      "label": "原价销售额",
+      "aliases": ["销售额", "营收", "成交额", "revenue", "sales"],
+      "definition": "先逐行计算 units × unit_price，再求和；该口径未扣除折扣与退货",
+      "formula": "(df['units'] * df['unit_price']).sum()",
+      "required_columns": ["units", "unit_price"]
+    },
+    {
+      "name": "net_sales_amount",
+      "label": "折后销售额",
+      "aliases": ["折后成交额", "discounted sales"],
+      "definition": "逐行计算 units × unit_price × (1 - discount_rate)，未扣除退货",
+      "formula": "(df['units'] * df['unit_price'] * (1 - df['discount_rate'])).sum()",
+      "required_columns": ["units", "unit_price", "discount_rate"]
+    },
+    {
+      "name": "realized_sales_amount",
+      "label": "回款销售额",
+      "aliases": ["退货后销售额", "realized sales"],
+      "definition": "折后销售额进一步乘以 (1 - returned)，将退货订单金额剔除",
+      "formula": "(df['units'] * df['unit_price'] * (1 - df['discount_rate']) * (1 - df['returned'])).sum()",
+      "required_columns": ["units", "unit_price", "discount_rate", "returned"]
+    },
+    {
+      "name": "return_count",
+      "label": "退货订单数",
+      "aliases": ["退货笔数", "退货数量"],
+      "definition": "returned 是订单级 0/1 标记，退货订单数为 returned 的求和",
+      "formula": "df['returned'].sum()",
+      "required_columns": ["returned"]
+    },
+    {
+      "name": "return_rate",
+      "label": "退货率",
+      "aliases": ["退货订单占比"],
+      "definition": "returned 是订单级 0/1 标记，退货率为 returned 的平均值；不能除以 units",
+      "formula": "df['returned'].mean()",
+      "required_columns": ["returned"]
+    },
+    {
+      "name": "average_shipping_days",
+      "label": "平均物流时效",
+      "aliases": ["平均物流天数", "平均配送天数"],
+      "definition": "shipping_days 的平均值",
+      "formula": "df['shipping_days'].mean()",
+      "required_columns": ["shipping_days"]
+    },
+    {
+      "name": "discount_rate",
+      "label": "折扣率",
+      "aliases": ["平均折扣", "优惠率"],
+      "definition": "discount_rate 是 0 到 1 之间的比例字段",
+      "formula": "df['discount_rate'].mean()",
+      "required_columns": ["discount_rate"]
+    }
+  ]
+}
