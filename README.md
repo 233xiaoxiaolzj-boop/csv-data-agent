@@ -122,7 +122,7 @@ python benchmark.py --suite full \
 ```bash
 python -m pip install -r requirements-dev.txt
 ruff check .
-pytest --cov --cov-report=term-missing
+python -m pytest --cov --cov-report=term-missing
 ```
 
 ## 数据与指标口径
